@@ -1,4 +1,4 @@
-package org.apache.flink.clickhouse.schema;
+package org.apache.flink.clickhouse.datastream.metadata;
 
 /** table name. */
 public interface TableDescriptor {

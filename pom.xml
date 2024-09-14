@@ -9,14 +9,14 @@
     </parent>
 
     <artifactId>flink-clickhouse-sinker</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.17.1</version>
     <packaging>jar</packaging>
 
     <name>flink-clickhouse-sinker</name>
     <url>http://maven.apache.org</url>
 
     <properties>
-        <flink.version>1.19.0</flink.version>
+        <flink.version>1.17.1</flink.version>
         <flink.scope>provided</flink.scope>
         <clickhouse.version>0.6.4</clickhouse.version>
         <httpclient.version>5.2.1</httpclient.version>
@@ -34,6 +34,29 @@
         <dependency>
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-runtime</artifactId>
+            <version>${flink.version}</version>
+            <scope>${flink.scope}</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-connector-clickhouse</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.flink</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-table-api-java</artifactId>
+            <version>${flink.version}</version>
+            <scope>${flink.scope}</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-connector-base</artifactId>
             <version>${flink.version}</version>
             <scope>${flink.scope}</scope>
         </dependency>

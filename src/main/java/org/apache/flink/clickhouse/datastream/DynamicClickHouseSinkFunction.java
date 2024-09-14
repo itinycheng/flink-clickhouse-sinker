@@ -1,8 +1,8 @@
-package org.apache.flink.clickhouse;
+package org.apache.flink.clickhouse.datastream;
 
 import org.apache.flink.api.java.tuple.Tuple2;
-import org.apache.flink.clickhouse.data.Data;
-import org.apache.flink.clickhouse.schema.TableDescriptor;
+import org.apache.flink.clickhouse.datastream.data.Row;
+import org.apache.flink.clickhouse.datastream.metadata.TableDescriptor;
 import org.apache.flink.configuration.Configuration;
 import org.apache.flink.runtime.state.FunctionInitializationContext;
 import org.apache.flink.runtime.state.FunctionSnapshotContext;
@@ -14,7 +14,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 
 /** sinker. */
-public class DynamicClickHouseSinkFunction extends RichSinkFunction<Tuple2<TableDescriptor, Data>>
+public class DynamicClickHouseSinkFunction extends RichSinkFunction<Tuple2<TableDescriptor, Row>>
         implements CheckpointedFunction {
 
     private Map<TableDescriptor, String> insertSqlCache;
@@ -31,7 +31,7 @@ public class DynamicClickHouseSinkFunction extends RichSinkFunction<Tuple2<Table
     }
 
     @Override
-    public void invoke(Tuple2<TableDescriptor, Data> value, Context context) throws Exception {
+    public void invoke(Tuple2<TableDescriptor, Row> value, Context context) throws Exception {
         super.invoke(value, context);
     }
 

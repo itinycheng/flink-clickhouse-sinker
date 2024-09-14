@@ -1,4 +1,4 @@
-package org.apache.flink.clickhouse.schema;
+package org.apache.flink.clickhouse.datastream.metadata;
 
 import org.apache.flink.util.Preconditions;
 
