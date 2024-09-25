@@ -1,6 +1,5 @@
 package org.apache.flink.clickhouse.datastream;
 
-import org.apache.flink.api.common.SupportsConcurrentExecutionAttempts;
 import org.apache.flink.api.connector.sink2.Committer;
 import org.apache.flink.api.connector.sink2.StatefulSink;
 import org.apache.flink.api.connector.sink2.TwoPhaseCommittingSink;
@@ -27,8 +26,8 @@ import static org.apache.flink.util.Preconditions.checkNotNull;
 /** clickhouse sink. */
 public class ClickHouseSink<IN extends Row>
         implements StatefulSink<IN, ClickHouseWriterState>,
-                TwoPhaseCommittingSink<IN, ClickHouseCommittable>,
-                SupportsConcurrentExecutionAttempts {
+                TwoPhaseCommittingSink<IN, ClickHouseCommittable>
+/*, SupportsConcurrentExecutionAttempts*/ {
 
     private final DeliveryGuarantee deliveryGuarantee;
 
