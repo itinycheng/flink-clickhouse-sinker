@@ -7,25 +7,25 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /** Row to RowData converter. */
-public abstract class RowRowDataConverter implements RowDataConverter<Row> {
+public abstract class RowRowDataConverter<IN extends Row> implements RowDataConverter<IN> {
 
     private static final Logger LOG = LoggerFactory.getLogger(RowRowDataConverter.class);
 
     @Override
-    public RowData convert(Row record, String[] fieldNames) {
-        GenericRowData rowData = new GenericRowData(record.size());
+    public RowData convert(IN record, String[] fieldNames) {
+        GenericRowData rowData = new GenericRowData(fieldNames.length);
         for (int i = 0; i < fieldNames.length; i++) {
             if (!record.contains(fieldNames[i])) {
                 LOG.debug("Field {} not found in record", fieldNames[i]);
             }
 
             Object value = record.value(fieldNames[i]);
-            rowData.setField(i, packValue(value));
+            rowData.setField(i, boxValue(value));
         }
 
         rowData.setRowKind(record.getKind());
         return rowData;
     }
 
-    protected abstract Object packValue(Object value);
+    protected abstract Object boxValue(Object value);
 }
